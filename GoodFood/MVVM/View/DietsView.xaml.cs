@@ -25,6 +25,7 @@ namespace GoodFood.MVVM.View
         {
             InitializeComponent();
             Welcome.Text = $"Здравствуйте, {PersonalCab.CurrentUser.GetName()}";
+            DataContext = PersonalCabViewModel.DietsVM;
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

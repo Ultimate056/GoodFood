@@ -32,11 +32,11 @@ namespace GoodFood.MVVM.Model
         public User(int id_user)
         {
             user_id = id_user;
-            name = ExtractValueFromBD("ФИО");
+            name = ExtractValueFromBD("Имя");
             Height = float.Parse(ExtractValueFromBD("Рост"));
             Weight = float.Parse(ExtractValueFromBD("Вес"));
             sex = ExtractValueFromBD("sex");
-            Login = ExtractValueFromBD("email");
+            Login = ExtractValueFromBD("Логин");
             Password = ExtractValueFromBD("Пароль");
         }
 

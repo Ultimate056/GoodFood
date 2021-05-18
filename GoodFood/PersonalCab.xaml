@@ -59,8 +59,7 @@
 
         <Grid Name="Main_content" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="122"/>
-                <RowDefinition Height="500"/>
+                <RowDefinition Height="95"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 

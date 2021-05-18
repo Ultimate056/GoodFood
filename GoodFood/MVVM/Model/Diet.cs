@@ -20,23 +20,41 @@ namespace GoodFood.MVVM.Model
 
         public int ID_Diet { get; set; } = 0;
 
+        public static bool IsDiet { get; set; }
+
         public Diet()
         {
             connection.Open();
             cmd = new SqlCommand("SELECT ID_diet FROM Диета WHERE ID_goal=@goal and ID_Диагноза=@diagnoz", connection);
             cmd.Parameters.AddWithValue("@goal", PersonalCab.CurrentUser.id_goal);
             cmd.Parameters.AddWithValue("@diagnoz", PersonalCab.CurrentUser.id_diagnoz);
-            ID_Diet = int.Parse(Convert.ToString(cmd.ExecuteScalar()));
-
-            cmd = new SqlCommand("SELECT [Название диеты] FROM Диета WHERE ID_diet=@id", connection);
-            cmd.Parameters.AddWithValue("@id", ID_Diet);
-            Name = cmd.ExecuteScalar().ToString();
-
-            cmd = new SqlCommand("SELECT Диета FROM Диета WHERE ID_diet=@id", connection);
-            cmd.Parameters.AddWithValue("@id", ID_Diet);
-            Text = cmd.ExecuteScalar().ToString();
-
+            string res = Convert.ToString(cmd.ExecuteScalar());
+            if (res == "")
+            {
+                MessageBox.Show("Для вас диеты нет");
+                IsDiet = false;
+            }        
+            else
+            {
+                ID_Diet = int.Parse(res);
+                cmd = new SqlCommand("SELECT [Название диеты] FROM Диета WHERE ID_diet=@id", connection);
+                cmd.Parameters.AddWithValue("@id", ID_Diet);
+                res = cmd.ExecuteScalar().ToString();
+                Name = "Ваша наиболее подходящая диета: " + res;
+                cmd = new SqlCommand("SELECT Диета FROM Диета WHERE ID_diet=@id", connection);
+                cmd.Parameters.AddWithValue("@id", ID_Diet);
+                Text = cmd.ExecuteScalar().ToString();
+                IsDiet = true;
+            }  
             connection.Close();
+        }
+
+
+        public Diet(String name, String text, int id)
+        {
+            Name = name;
+            Text = text;
+            ID_Diet = id;
         }
     }
 }

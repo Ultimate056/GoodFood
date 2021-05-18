@@ -115,8 +115,8 @@ namespace GoodFood
         {
             string usersProdID = "";
             connection.Open();
-            cmd = new SqlCommand($"SELECT ID_User FROM users WHERE email=@login and Пароль=@password", connection);
-            cmd.Parameters.AddWithValue("@login", login);
+            cmd = new SqlCommand($"SELECT ID_user FROM users WHERE Логин=@loginn and Пароль=@password", connection);
+            cmd.Parameters.AddWithValue("@loginn", login);
             cmd.Parameters.AddWithValue("@password", password);
             try
             {

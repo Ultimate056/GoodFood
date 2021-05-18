@@ -110,7 +110,7 @@ namespace GoodFood
             }
             else
             {
-                if (height < 150 || height > 200 || weight < 40 || weight > 400)
+                if (height < 150 || height > 200 || weight < 45 || weight > 117)
                 {
                     check = false;
                     HWError.Content = "Некорректно введены значения";
@@ -128,9 +128,9 @@ namespace GoodFood
                 try
                 {
                     bool isLogin = false;
-                    SqlCommand cmdCheckLogin = new SqlCommand($"SELECT email FROM users WHERE email=@login",connection);
+                    SqlCommand cmdCheckLogin = new SqlCommand($"SELECT Логин FROM users WHERE Логин=@loginn",connection);
                     connection.Open();
-                    cmdCheckLogin.Parameters.AddWithValue("@login", Login.Text);
+                    cmdCheckLogin.Parameters.AddWithValue("@loginn", Login.Text);
                     try
                     {
                         string em = Convert.ToString(cmdCheckLogin.ExecuteScalar());
@@ -146,15 +146,16 @@ namespace GoodFood
 
                     if(!isLogin)
                     {
-                        cmd = new SqlCommand("insert into users (ФИО, email,[Дата Рождения], Пароль, Рост, Вес,ID_diagnoses, ID_goal, ID_activity, sex) values (@name, @email, @date, @pas, @rost, @wes,4,4,4, @sex)", connection);
+                        cmd = new SqlCommand("insert into users (Имя, Логин ,sex, [Дата Рождения], Пароль, Рост, Вес,ID_diagnoses, ID_goal, ID_activity) values (@name, @email, @sex, @date, @pas, @rost, @wes,4,4,4)", connection);
                         connection.Open();
                         cmd.Parameters.AddWithValue("@name", Name.Text);
                         cmd.Parameters.AddWithValue("@email", Login.Text);
+                        cmd.Parameters.AddWithValue("@sex", sex);
                         cmd.Parameters.AddWithValue("@date", DateBirthday.SelectedDate);
                         cmd.Parameters.AddWithValue("@pas", Password.Password);
                         cmd.Parameters.AddWithValue("@rost", Height.Text);
                         cmd.Parameters.AddWithValue("@wes", Weight.Text);
-                        cmd.Parameters.AddWithValue("@sex", sex);
+                        
                         cmd.ExecuteNonQuery();
                         connection.Close();
 
