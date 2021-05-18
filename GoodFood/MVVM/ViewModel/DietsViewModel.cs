@@ -11,22 +11,18 @@ namespace GoodFood.MVVM.ViewModel
 {
     public class DietsViewModel : ObservableObject
     {
-        private Diet _CurrentDiet;
-        public Diet Diet { get => _CurrentDiet; set => Set(ref _CurrentDiet, value);}
+        private  Diet _d ;
+        public Diet d { get=>_d; set { _d = value; OnPropertyChanged(); } }
 
-        public ICommand DietChangeCommand { get; set; }
-
-        public void OnDietChangeCommandExecuted(object p)
-        {
-            _CurrentDiet = new Diet();
-        }
-        public bool CanDietChangeCommandExecute(object p) => true;
-  
+        public RelayCommand ChangeDietCommand { get; set; }
 
         public DietsViewModel()
         {
-            DietChangeCommand = new RelayCommand(OnDietChangeCommandExecuted, CanDietChangeCommandExecute);
+            d = new Diet("Какахная диета", "На завтрак: Какашки, на обед: какашки 300 гр, На ужин: какашки 800гр.", 0);
+            ChangeDietCommand = new RelayCommand(o =>
+            {
+                d = PersonalCab.CurrentUser.currentDiet;
+            });
         }
-       
     }
 }

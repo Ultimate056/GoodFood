@@ -167,7 +167,9 @@
   <ItemGroup>
     <Resource Include="Res\background.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\b_registr.png" />
   </ItemGroup>

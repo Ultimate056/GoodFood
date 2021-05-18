@@ -21,13 +21,13 @@ namespace GoodFood.MVVM.ViewModel
 
         private object _currentView;
 
-        public DietsViewModel DietsVM { get; set; }
+        public static DietsViewModel DietsVM { get; set; }
 
-        public DescriptionViewModel DescriptionVM { get; set; }
+        public static DescriptionViewModel DescriptionVM { get; set; }
 
-        public FAQViewModel FAQVM { get; set; }
+        public static FAQViewModel FAQVM { get; set; }
 
-        public DevSViewModel DevSVM { get; set; }
+        public static DevSViewModel DevSVM { get; set; }
 
         public object CurrentView
         {
@@ -39,6 +39,7 @@ namespace GoodFood.MVVM.ViewModel
             }
 
         }
+
         public PersonalCabViewModel()
         {
             DietsVM = new DietsViewModel();
@@ -46,6 +47,7 @@ namespace GoodFood.MVVM.ViewModel
             FAQVM = new FAQViewModel();
             DevSVM = new DevSViewModel();
             CurrentView = DietsVM;
+
             DietsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = DietsVM;
