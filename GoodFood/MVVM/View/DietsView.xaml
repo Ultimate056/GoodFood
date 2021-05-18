@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="GoodFood.MVVM.View.DietsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:GoodFood.MVVM.ViewModel"
+             xmlns:view="clr-namespace:GoodFood.MVVM.View" d:DataContext="{d:DesignInstance Type=viewModel:PersonalCabViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="483" d:DesignWidth="483">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="Welcome" Text="Здравствуйте, имя" Foreground="white" FontSize="20" HorizontalAlignment="Center"/>
+            <TextBlock Margin="0,20,0,0">
+                <Hyperlink TextDecorations="none" Click="Hyperlink_Click">
+                    <Label Content="- Рассчитать новую диету" Foreground="LightBlue" FontSize="16" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock x:Name="Name_diet" Height="25" Margin="30,0,0,0" Foreground="White" FontSize="16" Text=""></TextBlock>
+            <ScrollViewer Margin="20,10,0,7" >
+                <TextBlock Name="Diets" Height="170" Margin="0,0,0,0" Foreground="White" FontSize="14" Text="">
+
+                </TextBlock>
+            </ScrollViewer>
+           
+            <ScrollViewer Margin="20,20,0,0">
+                <TextBlock Name="Physical" Height="170" Margin="0,0,0,0">
+
+                </TextBlock>
+            </ScrollViewer>
+          
+        </StackPanel>
+    </Grid>
+</UserControl>

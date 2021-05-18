@@ -1,0 +1,28 @@
+﻿<Window x:Class="GoodFood.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GoodFood"
+        mc:Ignorable="d"
+        Title="GoodFood - Программа по подбору диеты" Height="733" Width="733"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="Res\background.png" />
+    </Window.Background>
+    <Grid>
+        <TextBlock Margin="555,485,122,170" ToolTip="Нажмите для входа">
+                <Hyperlink TextDecorations="None" Click="PersonalCab_Button">
+                    <Image Height="50" Width="53" Source="Res\1pagebutton.png" />
+                </Hyperlink>
+        </TextBlock>
+        <TextBox x:Name="Login" HorizontalAlignment="Left" Height="23" Margin="290,467,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" MaxLength="35" IsUndoEnabled="True" Background="{x:Null}" Foreground="#FFF7F5F5" TextAlignment="Center" FontSize="14" BorderBrush="Transparent"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="290,528,0,0" VerticalAlignment="Top" Width="233" Height="23" Background="{x:Null}" MaxLength="30"  Foreground="#FFFBF8F8" HorizontalContentAlignment="Center" BorderBrush="Transparent"/>
+        <TextBlock HorizontalAlignment="Left" Margin="310,600,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" FontSize="12" Foreground="#FFE6C9C9">
+            <Hyperlink TextDecorations="none" Click="ClickRegistr">
+                <Label Height="23" Width="141" Foreground="#FFE2C9C9" >Создать новый аккаунт</Label>
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</Window>

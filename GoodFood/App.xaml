@@ -1,0 +1,32 @@
+﻿<Application x:Class="GoodFood.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GoodFood"
+             xmlns:viewModel="clr-namespace:GoodFood.MVVM.ViewModel"
+             xmlns:view="clr-namespace:GoodFood.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MainMenuButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:DietsViewModel}">
+                <view:DietsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DescriptionViewModel}">
+                <view:DescriptionView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:FAQViewModel}">
+                <view:FAQView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DevSViewModel}">
+                <view:DevSView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
