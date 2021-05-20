@@ -44,8 +44,13 @@ namespace GoodFood.MVVM.Model
                 cmd = new SqlCommand("SELECT Диета FROM Диета WHERE ID_diet=@id", connection);
                 cmd.Parameters.AddWithValue("@id", ID_Diet);
                 Text = cmd.ExecuteScalar().ToString();
+
+                cmd = new SqlCommand("UPDATE users SET ID_diet=@id WHERE ID_user=@id2", connection);
+                cmd.Parameters.AddWithValue("@id", ID_Diet);
+                cmd.Parameters.AddWithValue("@id2", PersonalCab.CurrentUser.user_id);
+                cmd.ExecuteNonQuery();
                 IsDiet = true;
-            }  
+            }
             connection.Close();
         }
 

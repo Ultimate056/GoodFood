@@ -18,7 +18,10 @@ namespace GoodFood.MVVM.ViewModel
 
         public DietsViewModel()
         {
-            d = new Diet("Какахная диета", "На завтрак: Какашки, на обед: какашки 300 гр, На ужин: какашки 800гр.", 0);
+            if (PersonalCab.CurrentUser.IsDiet)
+                d = new Diet(PersonalCab.CurrentUser.currentDiet.Name, PersonalCab.CurrentUser.currentDiet.Text, PersonalCab.CurrentUser.currentDiet.ID_Diet);
+            else
+                d = new Diet("dsf", "aa", 0);
             ChangeDietCommand = new RelayCommand(o =>
             {
                 d = PersonalCab.CurrentUser.currentDiet;
