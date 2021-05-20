@@ -196,14 +196,16 @@ namespace GoodFood
                         PersonalCab.CurrentUser.id_typeactivity = id_activity;
 
                         // Создаем для пользователя новую диету
+                        Diet save = PersonalCab.CurrentUser.currentDiet;
                         PersonalCab.CurrentUser.currentDiet = new Diet();
-
                         // Если диета была найдена
-                        if(Diet.IsDiet)
+                        if (Diet.IsDiet)
                         {
                             MessageBox.Show("Диета подобрана");
                             this.Close();
                         }
+                        else
+                            PersonalCab.CurrentUser.currentDiet = save;
                     }
                 }
 
