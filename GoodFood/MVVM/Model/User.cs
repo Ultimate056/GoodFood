@@ -28,6 +28,8 @@ namespace GoodFood.MVVM.Model
 
         private string Password;
 
+        public bool IsDiet;
+
         string sex;
         public User(int id_user)
         {
@@ -38,6 +40,31 @@ namespace GoodFood.MVVM.Model
             sex = ExtractValueFromBD("sex");
             Login = ExtractValueFromBD("Логин");
             Password = ExtractValueFromBD("Пароль");
+            IsDiet = ContentDiet();
+        }
+
+        public bool ContentDiet()
+        {
+            connection.Open();
+
+            cmd = new SqlCommand("SELECT ID_diet FROM users WHERE ID_user=@id", connection);
+            cmd.Parameters.AddWithValue("@id", user_id);
+            string Result = cmd.ExecuteScalar().ToString();
+            if(Result != "")
+            {
+                cmd = new SqlCommand("SELECT Диета FROM Диета WHERE ID_diet=@id", connection);
+                cmd.Parameters.AddWithValue("@id", int.Parse(Result));
+                string TextDiet = cmd.ExecuteScalar().ToString();
+
+                cmd = new SqlCommand("SELECT [Название диеты] FROM Диета WHERE ID_diet=@id", connection);
+                cmd.Parameters.AddWithValue("@id", int.Parse(Result));
+                string NameDiet = cmd.ExecuteScalar().ToString();
+                currentDiet = new Diet(NameDiet, TextDiet, int.Parse(Result));
+                connection.Close();
+                return true;
+            }
+            connection.Close();
+            return false;
         }
 
         public string ExtractValueFromBD(string NameFieldColumn)

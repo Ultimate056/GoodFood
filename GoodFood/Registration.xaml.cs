@@ -146,7 +146,7 @@ namespace GoodFood
 
                     if(!isLogin)
                     {
-                        cmd = new SqlCommand("insert into users (Имя, Логин ,sex, [Дата Рождения], Пароль, Рост, Вес,ID_diagnoses, ID_goal, ID_activity) values (@name, @email, @sex, @date, @pas, @rost, @wes,4,4,4)", connection);
+                        cmd = new SqlCommand("insert into users (Имя, Логин ,sex, [Дата Рождения], Пароль, Рост, Вес,ID_diagnoses, ID_goal, ID_activity, ID_diet) values (@name, @email, @sex, @date, @pas, @rost, @wes,4,4,4,4)", connection);
                         connection.Open();
                         cmd.Parameters.AddWithValue("@name", Name.Text);
                         cmd.Parameters.AddWithValue("@email", Login.Text);
