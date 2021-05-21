@@ -255,8 +255,16 @@ namespace GoodFood
                 cmd.Parameters.AddWithValue("@rost", Height.Text);
                 cmd.Parameters.AddWithValue("@id", PersonalCab.CurrentUser.user_id);
                 cmd.ExecuteNonQuery();
-                connection.Close();
+
+                cmd = new SqlCommand("UPDATE users SET Вес=@ves WHERE ID_user=@id", connection);
+                cmd.Parameters.AddWithValue("@ves", Weight.Text);
+                cmd.Parameters.AddWithValue("@id", PersonalCab.CurrentUser.user_id);
+
                 PersonalCab.CurrentUser.Height = float.Parse(Height.Text);
+                PersonalCab.CurrentUser.Weight = float.Parse(Weight.Text);
+
+                connection.Close();
+               
                 b1.IsEnabled = false;
                 b1.Visibility = Visibility.Hidden;
                 Height.IsEnabled = false;
