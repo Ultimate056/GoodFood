@@ -14,6 +14,7 @@ namespace GoodFood.MVVM.Model
         SqlCommand cmd;
         public SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         public int user_id { get; set; }
+        
         public string name = "";
         public float Height { get; set; }
         public float Weight { get; set; }
@@ -28,11 +29,12 @@ namespace GoodFood.MVVM.Model
 
         private string Password;
 
-        public bool IsDiet;
+        public bool IsDiet; // Для проверки, если диета не будет найдена
 
         string sex;
         public User(int id_user)
         {
+            // Инициализируем объект класса из БД
             user_id = id_user;
             name = ExtractValueFromBD("Имя");
             Height = float.Parse(ExtractValueFromBD("Рост"));
@@ -40,6 +42,8 @@ namespace GoodFood.MVVM.Model
             sex = ExtractValueFromBD("sex");
             Login = ExtractValueFromBD("Логин");
             Password = ExtractValueFromBD("Пароль");
+
+            // Выполняем метод который возвращает булевое значение, если диета уже была в пользователе
             IsDiet = ContentDiet();
         }
 
