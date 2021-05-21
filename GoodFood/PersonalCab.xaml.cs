@@ -47,9 +47,15 @@ namespace GoodFood
         private void AcceptDiet_Click(object sender, RoutedEventArgs e)
         {
             // Запускаем метод по инициализации айдишника выбранной диеты в бд
-            Diet.AcceptChanges(PersonalCab.CurrentUser.currentDiet.ID_Diet);
-            MessageBox.Show("Вы успешно выбрали диету");
-            AcceptDiet.IsEnabled = false;
+            if (Choise_Diet.Text != null && Choise_Diet.Text != "")
+            {
+                Diet.AcceptChanges(PersonalCab.CurrentUser.currentDiet.ID_Diet);
+                MessageBox.Show("Вы успешно выбрали диету");
+                AcceptDiet.IsEnabled = false;
+            }
+            else
+                MessageBox.Show("Выберите диету!");
+               
         }
     }
 }
