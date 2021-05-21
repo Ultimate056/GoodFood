@@ -56,7 +56,7 @@ namespace GoodFood.MVVM.Model
             cmd = new SqlCommand("SELECT ID_diet FROM users WHERE ID_user=@id", connection);
             cmd.Parameters.AddWithValue("@id", user_id);
             string Result = cmd.ExecuteScalar().ToString();
-            if(Result != "" || Result !="4")
+            if(Result != "" && Result !="null" && Result!="4")
             {
                 cmd = new SqlCommand("SELECT Диета FROM Диета WHERE ID_diet=@id", connection);
                 cmd.Parameters.AddWithValue("@id", int.Parse(Result));
