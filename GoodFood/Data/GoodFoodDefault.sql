@@ -4,16 +4,19 @@ USE GFVers2;
 CREATE TABLE Диагнозы (ID_diagnoses BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), [Название диагноза] VARCHAR (500));
 CREATE TABLE Активность (ID_activity INT NOT NULL PRIMARY KEY IDENTITY(1,1), [Тип активности] VARCHAR(50));
 CREATE TABLE Цель (ID_goal INT NOT NULL PRIMARY KEY IDENTITY(1,1), Цель VARCHAR(30));
-CREATE TABLE users (ID_user BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), Имя VARCHAR(300) NOT NULL, Логин VARCHAR(300), sex char(50), [Дата рождения] DATE NOT NULL, Пароль VARCHAR(50), Рост FLOAT NOT NULL, Вес FLOAT NOT NULL, ID_diagnoses BIGINT NOT NULL FOREIGN KEY REFERENCES Диагнозы (ID_diagnoses), ID_goal INT FOREIGN KEY REFERENCES Цель (ID_goal), ID_activity INT FOREIGN KEY REFERENCES Активность (ID_activity));
 CREATE TABLE Диета (ID_diet BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), Диета TEXT, [Название диеты] VARCHAR(300),ID_goal INT NOT NULL FOREIGN KEY REFERENCES Цель (ID_goal), ID_Диагноза BIGINT NOT NULL FOREIGN KEY REFERENCES Диагнозы (ID_diagnoses));
+CREATE TABLE users (ID_user BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), Имя VARCHAR(300) NOT NULL, Логин VARCHAR(300), sex char(50), [Дата рождения] DATE NOT NULL, Пароль VARCHAR(50), Рост FLOAT NOT NULL, Вес FLOAT NOT NULL, ID_diagnoses BIGINT NOT NULL FOREIGN KEY REFERENCES Диагнозы (ID_diagnoses), ID_goal INT FOREIGN KEY REFERENCES Цель (ID_goal), ID_activity INT FOREIGN KEY REFERENCES Активность (ID_activity), ID_diet BIGINT FOREIGN KEY REFERENCES Диета(ID_diet));
+
 CREATE TABLE Упражнения (Id_education BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), Название TEXT, [Количество подходов] TEXT);
 CREATE TABLE Рекомендации (ID_recommend BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), ID_education BIGINT NOT NULL FOREIGN KEY REFERENCES Упражнения (ID_education), ID_diet BIGINT NOT NULL FOREIGN KEY REFERENCES Диета (ID_diet));
 
-INSERT INTO Диагнозы ([Название диагноза]) VALUES ('Язва'), ('Анорексия'), ('Отсутствует'), ('null');
+
+UPDATE Диагнозы SET [Название диагноза]='Аннорексия' WHERE [Название диагноза]='Анорексия';
+
+INSERT INTO Диагнозы ([Название диагноза]) VALUES ('Язва'), ('Аннорексия'), ('Отсутствует'), ('null');
 INSERT INTO Цель (Цель) VALUES ('Похудеть'), ('Поддержать вес'), ('Набрать вес'), ('null');
 INSERT INTO Активность ([Тип активности]) VALUES ('Низкий'), ('Средний'), ('Высокий'), ('null');
 
-INSERT INTO users(Имя, Логин, sex, [Дата рождения], Пароль, Рост, Вес, ID_diagnoses, ID_goal, ID_activity) VALUES ('Валерий','Valerus', 'мужской', '19.01.2001', '123', 171, 60, 4,4,4);
 
 INSERT INTO Диета ([Диета], [Название диеты], ID_goal, ID_Диагноза) VALUES ('1 день. 0,5 л кефира + 400 г запеченного картофеля, приготовленного без добавления соли.
 
@@ -314,3 +317,11 @@ INSERT INTO Диета ([Диета], [Название диеты], ID_goal, ID_Диагноза) VALUES ('1 д
 обед — борщ украинский, по одному огурцу и помидору, чай;
 полдник — свежевыжатый виноградный сок, 5шт. чернослива;
 ужин — бутерброд с ветчиной и сыром, 50г изюма, 6шт. Чернослива, чай.', 'На спорте', 3, 2);
+
+
+INSERT INTO Диета ([Диета], [Название диеты], ID_goal, ID_Диагноза) VALUES ('null', 'null', 4,4);
+
+INSERT INTO Диета(Диета, [Название диеты], ID_goal, ID_Диагноза) VALUES ('Состав диеты 1', 'Диета 1', 1,3);
+INSERT INTO Диета(Диета, [Название диеты], ID_goal, ID_Диагноза) VALUES ('Состав диеты 2', 'Диета 2', 1,3);
+INSERT INTO Диета(Диета, [Название диеты], ID_goal, ID_Диагноза) VALUES ('Состав диеты 3', 'Диета 3', 1,3);
+INSERT INTO Диета(Диета, [Название диеты], ID_goal, ID_Диагноза) VALUES ('Состав диеты 4', 'Диета 4', 1,3);
