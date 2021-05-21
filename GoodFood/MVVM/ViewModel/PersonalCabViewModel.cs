@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace GoodFood.MVVM.ViewModel
 {
@@ -18,6 +19,33 @@ namespace GoodFood.MVVM.ViewModel
 
         public RelayCommand DevSViewCommand { get; set; }
 
+
+        #region Диеты
+        public RelayCommand SelectDiet { get; set; }
+        private string[] arrayNamesDiets;
+        public string[] ArrayNamesDiets
+        {
+            get { return arrayNamesDiets; }
+            set { arrayNamesDiets = value; OnPropertyChanged(); }
+        }
+
+        private List<Diet> arrayDiets;
+
+        public List<Diet> ArrayDiets
+        { 
+            get { return arrayDiets; } set { arrayDiets = value; OnPropertyChanged(); }
+        }
+
+
+
+        private bool _OnElements;
+        public bool OnElements { get { return _OnElements; } set { _OnElements = value; OnPropertyChanged(); } }
+
+        private System.Windows.Visibility vis;
+        public System.Windows.Visibility OnVisible { get { return vis; } set { vis = value; OnPropertyChanged(); } }
+
+
+        #endregion Конец диет
 
         private object _currentView;
 
@@ -42,6 +70,10 @@ namespace GoodFood.MVVM.ViewModel
 
         public PersonalCabViewModel()
         {
+            arrayDiets = null;
+            arrayNamesDiets = null;
+            OnElements = false;
+            OnVisible = System.Windows.Visibility.Hidden;
             DietsVM = new DietsViewModel();
             DescriptionVM = new DescriptionViewModel();
             FAQVM = new FAQViewModel();
@@ -65,6 +97,38 @@ namespace GoodFood.MVVM.ViewModel
                 CurrentView = DevSVM;
             });
 
+            SelectDiet = new RelayCommand(o =>
+            {
+                
+            });
         }
+
+        public static void SetDiets(List<Diet> coll)
+        {
+            string[] temp = new string[coll.Count];
+            for (int i = 0; i < coll.Count; i++)
+                temp[i] = coll[i].Name;
+            PersonalCab.currentViewModel.ArrayNamesDiets = temp;
+        }
+        public static void OnElementss(bool value, System.Windows.Visibility vss)
+        {
+            PersonalCab.currentViewModel.OnElements = value;
+            PersonalCab.currentViewModel.OnVisible = vss;
+        }
+
+        public static void SetValueDiets(List<Diet> coll)
+        {
+            PersonalCab.currentViewModel.ArrayDiets = coll;
+        }
+
+        public void UpdateDiet()
+        {
+            string DefName = PersonalCab.CurrentUser.currentDiet.Name;
+            string name = DefName.Substring(2);
+            name.Trim();
+            PersonalCab.CurrentUser.currentDiet.Name = name;
+            DietsVM.d = PersonalCab.CurrentUser.currentDiet;
+        }
+
     }
 }

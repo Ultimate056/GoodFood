@@ -33,6 +33,7 @@ namespace GoodFood
 
         string[] diagnoses = { "Язва", "Аннорексия", "Отсутствует" };
 
+        List<Diet> ListDiets = new List<Diet>();
 
         public NewModel()
         {
@@ -195,17 +196,33 @@ namespace GoodFood
                         PersonalCab.CurrentUser.id_diagnoz = id_diagnos;
                         PersonalCab.CurrentUser.id_typeactivity = id_activity;
 
+
                         // Создаем для пользователя новую диету
                         Diet save = PersonalCab.CurrentUser.currentDiet;
                         PersonalCab.CurrentUser.currentDiet = new Diet();
-                        // Если диета была найдена
-                        if (Diet.IsDiet)
+
+
+                        if(Diet.IsManyDiets)
                         {
-                            MessageBox.Show("Диета подобрана");
+                            ListDiets = Diet.GetCollectionDiets(PersonalCab.CurrentUser.currentDiet.ID_Diets);
+                            
+                            PersonalCabViewModel.SetDiets(ListDiets); // установка значения в комбобокс 
+                            PersonalCabViewModel.SetValueDiets(ListDiets);
+                            PersonalCabViewModel.OnElementss(true, System.Windows.Visibility.Visible);
+                            PersonalCab.Diets = ListDiets;
+                            MessageBox.Show("Диеты подобраны. Выберите диету");
                             this.Close();
                         }
                         else
-                            PersonalCab.CurrentUser.currentDiet = save;
+                        {
+                            if (Diet.IsDiet)
+                            {
+                                MessageBox.Show("Диета подобрана");
+                                this.Close();
+                            }
+                            else
+                                PersonalCab.CurrentUser.currentDiet = save;
+                        }       
                     }
                 }
 
