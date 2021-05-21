@@ -1,6 +1,11 @@
-CREATE DATABASE GVers2;
+CREATE DATABASE GFVers2;
 
-USE GFVers2;
+-- Сменить таблицу (с master на GFVers2)
+
+
+-- Ctrl + A 
+-- Execute
+
 CREATE TABLE Диагнозы (ID_diagnoses BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), [Название диагноза] VARCHAR (500));
 CREATE TABLE Активность (ID_activity INT NOT NULL PRIMARY KEY IDENTITY(1,1), [Тип активности] VARCHAR(50));
 CREATE TABLE Цель (ID_goal INT NOT NULL PRIMARY KEY IDENTITY(1,1), Цель VARCHAR(30));
@@ -10,8 +15,6 @@ CREATE TABLE users (ID_user BIGINT NOT NULL PRIMARY KEY IDENTITY(1,1), Имя VARCH
 CREATE TABLE Упражнения (Id_education BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), Название TEXT, [Количество подходов] TEXT);
 CREATE TABLE Рекомендации (ID_recommend BIGINT NOT NULL PRIMARY KEY IDENTITY (1,1), ID_education BIGINT NOT NULL FOREIGN KEY REFERENCES Упражнения (ID_education), ID_diet BIGINT NOT NULL FOREIGN KEY REFERENCES Диета (ID_diet));
 
-
-UPDATE Диагнозы SET [Название диагноза]='Аннорексия' WHERE [Название диагноза]='Анорексия';
 
 INSERT INTO Диагнозы ([Название диагноза]) VALUES ('Язва'), ('Аннорексия'), ('Отсутствует'), ('null');
 INSERT INTO Цель (Цель) VALUES ('Похудеть'), ('Поддержать вес'), ('Набрать вес'), ('null');
