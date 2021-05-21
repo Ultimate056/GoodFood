@@ -102,7 +102,7 @@ namespace GoodFood
                 if (height < 150 || height > 200 || weight < 45 || weight > 117)
                 {
                     check = false;
-                    HWError.Content = "Некорректно введены значения";
+                    HWError.Content = "Допустимые значения по весу: 45-117 кг, по росту: 150-200 см";
                 }
             }
 
