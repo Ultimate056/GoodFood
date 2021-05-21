@@ -200,7 +200,7 @@ namespace GoodFood
         {
             if (DateBirthday.SelectedDate.HasValue)
                 DateError.Content = "";
-            if (DateTime.Now.Year - DateBirthday.SelectedDate.Value.Year >= 14)
+            if (DateTime.Now.Year - DateBirthday.SelectedDate.Value.Year >= 17)
                 DateError.Content = "";
         }
 
@@ -209,7 +209,7 @@ namespace GoodFood
             double height = 0, weight = 0;
             if (Double.TryParse(Height.Text, out height) || Double.TryParse(Weight.Text, out weight))
             {
-                if (height < 150 || height > 250 || weight < 40 || weight > 400)
+                if (height < 150 || height > 200 || weight < 45 || weight > 117)
                     HWError.Content = "";
             }
         }
