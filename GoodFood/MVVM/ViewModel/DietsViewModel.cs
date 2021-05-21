@@ -21,7 +21,7 @@ namespace GoodFood.MVVM.ViewModel
             if (PersonalCab.CurrentUser.IsDiet)
                 d = new Diet(PersonalCab.CurrentUser.currentDiet.Name, PersonalCab.CurrentUser.currentDiet.Text, PersonalCab.CurrentUser.currentDiet.ID_Diet);
             else
-                d = new Diet("dsf", "aa", 0);
+                d = new Diet("", "", 0);
             ChangeDietCommand = new RelayCommand(o =>
             {
                 d = PersonalCab.CurrentUser.currentDiet;

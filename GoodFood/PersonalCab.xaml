@@ -24,6 +24,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="305"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -55,6 +56,17 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding DevSViewCommand}"/>
             </StackPanel>
+
+            <Grid Name="Dop" Grid.Row="2">
+                <StackPanel Margin="0,7,0,0" Orientation="Vertical">
+                    <Image x:Name="im" Source="/Res/attention.png" Width="75" Height="68" IsEnabled="{Binding OnElements}" Visibility="{Binding OnVisible}"></Image>
+                    <TextBlock  x:Name="ChoiseDietText" Margin="50,10,0,0" FontSize="16" FontStyle="Italic" IsEnabled="{Binding OnElements}" Visibility="{Binding OnVisible}">Выберите диету</TextBlock>
+                    <ComboBox x:Name="Choise_Diet" Margin="0,10,0,0" IsEnabled="{Binding OnElements}" Height="30" FontSize="14" Width="180" ItemsSource="{Binding ArrayNamesDiets}" Visibility="{Binding OnVisible}" SelectionChanged="Choise_Diet_SelectionChanged"/>
+                    <Button x:Name="AcceptDiet" Margin="5,7,0,0" Height="35" Width="150" Content="Выбрать диету" FontSize="16" IsEnabled="{Binding OnElements}" Visibility="{Binding OnVisible}" Click="AcceptDiet_Click"/>
+                </StackPanel>
+                
+            </Grid>
+
         </Grid>
 
         <Grid Name="Main_content" Grid.Column="0">
@@ -68,7 +80,9 @@
                             Content="{Binding CurrentView}"/>
             
         </Grid>
+
         
-        
+
+
     </Grid>
 </Window>

@@ -185,5 +185,8 @@
   <ItemGroup>
     <Resource Include="Res\buttonchangeDisable.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\attention.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

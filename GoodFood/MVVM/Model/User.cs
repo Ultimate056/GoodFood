@@ -43,6 +43,8 @@ namespace GoodFood.MVVM.Model
             IsDiet = ContentDiet();
         }
 
+
+        // Проверка, есть ли у пользователя после входа в программу уже выбранная диета
         public bool ContentDiet()
         {
             connection.Open();
@@ -50,7 +52,7 @@ namespace GoodFood.MVVM.Model
             cmd = new SqlCommand("SELECT ID_diet FROM users WHERE ID_user=@id", connection);
             cmd.Parameters.AddWithValue("@id", user_id);
             string Result = cmd.ExecuteScalar().ToString();
-            if(Result != "")
+            if(Result != "" || Result !="4")
             {
                 cmd = new SqlCommand("SELECT Диета FROM Диета WHERE ID_diet=@id", connection);
                 cmd.Parameters.AddWithValue("@id", int.Parse(Result));
@@ -67,6 +69,8 @@ namespace GoodFood.MVVM.Model
             return false;
         }
 
+
+        // Извлечь значение по какому-либо столбцу  у пользователя
         public string ExtractValueFromBD(string NameFieldColumn)
         {
             string res = null;
