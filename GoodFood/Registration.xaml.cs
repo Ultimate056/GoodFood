@@ -144,7 +144,6 @@ namespace GoodFood
                         cmd.Parameters.AddWithValue("@pas", Password.Password);
                         cmd.Parameters.AddWithValue("@rost", Height.Text);
                         cmd.Parameters.AddWithValue("@wes", Weight.Text);
-                        
                         cmd.ExecuteNonQuery();
                         connection.Close();
 
