@@ -1,23 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows;
-using System.Windows.Controls;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace GoodFood
 {
@@ -29,9 +14,7 @@ namespace GoodFood
 
         SqlCommand cmd;
         public SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
         string userID = null;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -88,27 +71,6 @@ namespace GoodFood
             Registration reg = new Registration();
             reg.Show();
         }
-
-
-        public string Min()
-        {
-            connection.Open();
-            cmd = new SqlCommand("select min(ID_user) from[users]", connection);
-            string MinUserID = Convert.ToString(cmd.ExecuteScalar());
-            connection.Close();
-            return MinUserID;
-        }//БД
-
-        public string Max()
-        {
-            connection.Open();
-            cmd = new SqlCommand("select max(ID_user) from[users]", connection);
-            string MaxUserID = Convert.ToString(cmd.ExecuteScalar());
-            connection.Close();
-            return MaxUserID;
-        }        //БД
-        
-
 
         // Проверка на вход
         public string ID(string login, string password)

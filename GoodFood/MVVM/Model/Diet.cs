@@ -14,6 +14,7 @@ namespace GoodFood.MVVM.Model
     {
         SqlCommand cmd;
         SqlDataAdapter adapter;
+        
         public static SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
 
         public string Name { get; set; } = " ";

@@ -11,6 +11,7 @@ namespace GoodFood.MVVM.ViewModel
 {
     public class PersonalCabViewModel : ObservableObject
     {
+        #region Команды по изменению контента (выборе вьюшки)
         public RelayCommand DietsViewCommand { get; set; }
 
         public RelayCommand DescriptionViewCommand { get; set; }
@@ -18,10 +19,10 @@ namespace GoodFood.MVVM.ViewModel
         public RelayCommand FAQViewCommand { get; set; }
 
         public RelayCommand DevSViewCommand { get; set; }
-
+        #endregion
 
         #region Диеты
-        public RelayCommand SelectDiet { get; set; }
+        
         private string[] arrayNamesDiets;
         public string[] ArrayNamesDiets
         {
@@ -37,13 +38,13 @@ namespace GoodFood.MVVM.ViewModel
         }
 
 
-
+            #region Свойства для обработки включения компонентов в форме "Личный кабинет" 
         private bool _OnElements;
         public bool OnElements { get { return _OnElements; } set { _OnElements = value; OnPropertyChanged(); } }
 
         private System.Windows.Visibility vis;
         public System.Windows.Visibility OnVisible { get { return vis; } set { vis = value; OnPropertyChanged(); } }
-
+            #endregion
 
         #endregion Конец диет
 
@@ -97,12 +98,10 @@ namespace GoodFood.MVVM.ViewModel
                 CurrentView = DevSVM;
             });
 
-            SelectDiet = new RelayCommand(o =>
-            {
-                
-            });
         }
 
+
+        // Метод, который инициализирует массив объектов имён для инициализации его в комбобоксе
         public static void SetDiets(List<Diet> coll)
         {
             string[] temp = new string[coll.Count];
@@ -110,17 +109,21 @@ namespace GoodFood.MVVM.ViewModel
                 temp[i] = coll[i].Name;
             PersonalCab.currentViewModel.ArrayNamesDiets = temp;
         }
+
+        // Метод, включающий компоненты для выбора диет
         public static void OnElementss(bool value, System.Windows.Visibility vss)
         {
             PersonalCab.currentViewModel.OnElements = value;
             PersonalCab.currentViewModel.OnVisible = vss;
         }
 
+        // Устанавливает список диет как объектов
         public static void SetValueDiets(List<Diet> coll)
         {
             PersonalCab.currentViewModel.ArrayDiets = coll;
         }
 
+        // Обновляет диету пользователя
         public void UpdateDiet()
         {
             string DefName = PersonalCab.CurrentUser.currentDiet.Name;
